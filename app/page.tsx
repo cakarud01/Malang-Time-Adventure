@@ -20,9 +20,12 @@ export default function Home() {
       packagesTitle: "Paket Wisata Bromo",
       packagesDesc:
         "Temukan perjalanan yang sesuai dengan gaya petualanganmu.",
-      privateDesc: "Perjalanan eksklusif dengan kendaraan dan layanan privat.",
-      sharingDesc: "Nikmati pengalaman Bromo bersama wisatawan lainnya.",
-      customDesc: "Atur perjalanan sesuai kebutuhan dan destinasi pilihanmu.",
+      privateTripDesc:
+        "Satu jeep privat khusus untuk rombonganmu, tanpa digabung dengan tamu lain. Nikmati sunrise Bromo dengan waktu yang lebih leluasa untuk berhenti, berfoto, dan menikmati perjalanan bersama orang terdekat.",
+      openTripDesc:
+        "Berbagi perjalanan dalam satu jeep bersama tamu lain, dengan biaya yang lebih hemat dan suasana seru. Cocok untuk solo traveler atau siapa pun yang ingin mendapat teman baru selama menjelajahi Bromo.",
+      longJeepDesc:
+        "Nikmati private long jeep yang lapang untuk rombongan hingga 10 orang. Jelajahi sunrise dan lautan pasir Bromo bersama, dengan ruang lebih lega untuk duduk dan membawa perlengkapan.",
       detail: "Tanya Paket",
       galleryEyebrow: "MOMEN TAK TERLUPAKAN",
       galleryTitle: "Keindahan Bromo",
@@ -51,9 +54,12 @@ export default function Home() {
       packagesEyebrow: "CHOOSE YOUR ADVENTURE",
       packagesTitle: "Bromo Tour Packages",
       packagesDesc: "Find the journey that matches your travel style.",
-      privateDesc: "An exclusive journey with private transportation and service.",
-      sharingDesc: "Experience Bromo together with fellow travelers.",
-      customDesc: "Customize your journey around your preferred destinations.",
+      privateTripDesc:
+        "Your own private jeep for your group, with no other guests joining the ride. Enjoy Bromo sunrise at a relaxed pace, with time to stop for photos and take in the journey together.",
+      openTripDesc:
+        "Share one jeep with fellow guests for a more budget-friendly, sociable Bromo adventure. Ideal for solo travelers or anyone hoping to meet new people along the way.",
+      longJeepDesc:
+        "Ride in a roomy private long jeep for groups of up to 10. Enjoy the sunrise and Bromo's sea of sand together, with more space for your group and gear.",
       detail: "Ask About This Package",
       galleryEyebrow: "UNFORGETTABLE MOMENTS",
       galleryTitle: "The Beauty of Bromo",
@@ -80,21 +86,24 @@ export default function Home() {
   const packages = [
     {
       category: "PRIVATE TRIP",
-      title: "Private Bromo Sunrise",
-      description: t.privateDesc,
+      title: "Private Trip",
+      description: t.privateTripDesc,
       type: "private",
+      image: "/images/package-private-trip.jpg",
     },
     {
-      category: "SHARING TRIP",
-      title: "Bromo Sharing Trip",
-      description: t.sharingDesc,
-      type: "sharing",
+      category: "OPEN TRIP",
+      title: "Open Trip",
+      description: t.openTripDesc,
+      type: "open",
+      image: "/images/package-open-trip.jpg",
     },
     {
-      category: "CUSTOM TRIP",
-      title: "Custom Bromo Trip",
-      description: t.customDesc,
-      type: "custom",
+      category: "PRIVATE TRIP · LONG JEEP",
+      title: "Private Trip Long Jeep",
+      description: t.longJeepDesc,
+      type: "long-jeep",
+      image: "/images/package-long-jeep.jpg",
     },
   ];
 
@@ -190,7 +199,14 @@ export default function Home() {
         <div className="package-grid">
           {packages.map((item, index) => (
             <article className="package-card" key={item.type}>
-              <div className={`package-image package-image-${index + 1}`}>
+              <div
+                className={`package-image package-image-${index + 1}`}
+                style={{
+                  backgroundImage: `linear-gradient(0deg, rgba(0,0,0,.35), transparent 55%), url("${item.image}")`,
+                }}
+                role="img"
+                aria-label={`${item.title} ${language === "id" ? "di Gunung Bromo" : "at Mount Bromo"}`}
+              >
                 <span>{item.category}</span>
               </div>
 
@@ -199,7 +215,9 @@ export default function Home() {
                 <p>{item.description}</p>
                 <a
                   href={whatsappLink(
-                    `Halo Malang Time Adventure, saya ingin bertanya tentang ${item.title}.`
+                    language === "id"
+                      ? `Halo Malang Time Adventure, saya ingin bertanya tentang paket ${item.title}.`
+                      : `Hello Malang Time Adventure, I would like to ask about the ${item.title} package.`
                   )}
                   target="_blank"
                   rel="noreferrer"
