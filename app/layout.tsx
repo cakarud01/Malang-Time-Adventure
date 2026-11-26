@@ -2,35 +2,133 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
+const siteUrl = "https://bromosunrise.vercel.app";
+const siteDescription =
+  "Jelajahi Gunung Bromo saat sunrise dengan Private Trip, Open Trip, dan Private Long Jeep hingga 10 orang. Tanya paket dan rencanakan perjalanan via WhatsApp bersama Malang Time Adventure.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Bromo Sunrise | Malang Time Adventure",
+    default: "Wisata Bromo Sunrise | Malang Time Adventure",
     template: "%s | Malang Time Adventure",
   },
-  description:
-    "Jelajahi keindahan Gunung Bromo bersama Malang Time Adventure. Pilihan paket Private Trip, Sharing Trip, dan Custom Trip dengan pemesanan mudah melalui WhatsApp.",
+  description: siteDescription,
+  applicationName: "Malang Time Adventure",
+  category: "travel",
   keywords: [
-    "Bromo Sunrise",
-    "Wisata Bromo",
-    "Paket Wisata Bromo",
-    "Private Trip Bromo",
-    "Sharing Trip Bromo",
+    "wisata Bromo",
+    "paket wisata Bromo",
+    "Bromo sunrise",
+    "private trip Bromo",
+    "open trip Bromo",
+    "long jeep Bromo",
     "Malang Time Adventure",
-    "Wisata Jawa Timur",
+    "wisata Jawa Timur",
   ],
   authors: [{ name: "Malang Time Adventure" }],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Bromo Sunrise | Malang Time Adventure",
-    description:
-      "Temukan pengalaman sunrise Gunung Bromo bersama Malang Time Adventure.",
+    title: "Paket Wisata Bromo Sunrise | Malang Time Adventure",
+    description: siteDescription,
     type: "website",
     locale: "id_ID",
     siteName: "Malang Time Adventure",
+    url: siteUrl,
+    images: [
+      {
+        url: "/images/bromo-sunrise-og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sunrise Gunung Bromo dan jeep wisata Malang Time Adventure",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Paket Wisata Bromo Sunrise | Malang Time Adventure",
+    description: siteDescription,
+    images: ["/images/bromo-sunrise-og.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TravelAgency",
+      "@id": `${siteUrl}/#organization`,
+      name: "Malang Time Adventure",
+      url: siteUrl,
+      description: siteDescription,
+      image: `${siteUrl}/images/bromo-sunrise-og.jpg`,
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Jawa Timur, Indonesia",
+      },
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: "+6285855500010",
+        contactType: "customer service",
+        availableLanguage: ["Indonesian", "English"],
+      },
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Paket Wisata Bromo",
+        itemListElement: [
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Private Trip Bromo",
+              description:
+                "Perjalanan sunrise Bromo dengan jeep privat khusus untuk satu rombongan.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Open Trip Bromo",
+              description:
+                "Perjalanan Bromo dengan berbagi jeep bersama tamu lain.",
+            },
+          },
+          {
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: "Private Trip Long Jeep Bromo",
+              description:
+                "Perjalanan privat dengan long jeep berkapasitas hingga 10 orang.",
+            },
+          },
+        ],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Malang Time Adventure",
+      inLanguage: "id-ID",
+      publisher: {
+        "@id": `${siteUrl}/#organization`,
+      },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -40,7 +138,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="id">
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

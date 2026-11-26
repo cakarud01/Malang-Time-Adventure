@@ -42,18 +42,25 @@ button {
   max-height: 1000px;
   position: relative;
   color: white;
-  background:
-    linear-gradient(90deg, rgba(8, 14, 12, .68), rgba(8, 14, 12, .12)),
-    linear-gradient(0deg, rgba(8, 14, 12, .48), transparent 45%),
-    url("/images/bromo-hero.jpg") center 55% / cover no-repeat;
+  background-color: #15201d;
   display: flex;
   flex-direction: column;
+}
+
+.hero-background {
+  z-index: 0;
+  object-fit: cover;
+  object-position: center 55%;
 }
 
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, .08);
+  z-index: 1;
+  background:
+    linear-gradient(90deg, rgba(8, 14, 12, .68), rgba(8, 14, 12, .12)),
+    linear-gradient(0deg, rgba(8, 14, 12, .48), transparent 45%),
+    rgba(0, 0, 0, .08);
   pointer-events: none;
 }
 
@@ -133,7 +140,7 @@ button {
 
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(1200px, 90%);
   margin: auto;
   padding: 80px 0;
@@ -232,7 +239,7 @@ button {
 
 .hero-bottom {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(1200px, 90%);
   margin: 0 auto;
   padding: 22px 0;
@@ -294,23 +301,27 @@ button {
 .package-image {
   height: 230px;
   position: relative;
-  background-image:
-    linear-gradient(0deg, rgba(0,0,0,.35), transparent 55%),
-    url("/images/bromo-hero.jpg");
-  background-size: cover;
-  background-position: center;
+  overflow: hidden;
+  background: #263446;
 }
 
-.package-image-2 {
-  background-position: 65% center;
+.package-photo {
+  z-index: 0;
+  object-fit: cover;
 }
 
-.package-image-3 {
-  background-position: 30% center;
+.package-image::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,.4), transparent 55%);
+  content: "";
+  pointer-events: none;
 }
 
 .package-image > span {
   position: absolute;
+  z-index: 2;
   bottom: 18px;
   left: 20px;
   color: white;
@@ -371,7 +382,7 @@ button {
   color: white;
   background-image:
     linear-gradient(0deg, rgba(0,0,0,.55), transparent 65%),
-    url("/images/bromo-hero.jpg");
+    url("/images/bromo-hero.webp");
   background-size: cover;
   background-position: center;
 }
@@ -409,7 +420,7 @@ button {
   position: relative;
   background:
     linear-gradient(0deg, rgba(0,0,0,.35), transparent),
-    url("/images/bromo-hero.jpg") center / cover no-repeat;
+    url("/images/bromo-hero.webp") center / cover no-repeat;
 }
 
 .about-image-label {
@@ -439,7 +450,7 @@ button {
   color: white;
   background:
     linear-gradient(rgba(17,23,20,.75), rgba(17,23,20,.82)),
-    url("/images/bromo-hero.jpg") center 55% / cover;
+    url("/images/bromo-hero.webp") center 55% / cover;
 }
 
 .contact-section .section-eyebrow {

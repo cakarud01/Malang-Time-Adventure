@@ -2,6 +2,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Home() {
   const [language, setLanguage] = useState<"id" | "en">("id");
@@ -90,6 +91,10 @@ export default function Home() {
       description: t.privateTripDesc,
       type: "private",
       image: "/images/package-private-trip.jpg",
+      imageAlt:
+        language === "id"
+          ? "Jeep privat dan rombongan wisatawan menikmati sunrise di Gunung Bromo"
+          : "A private jeep and its travel group enjoying sunrise at Mount Bromo",
     },
     {
       category: "OPEN TRIP",
@@ -97,6 +102,10 @@ export default function Home() {
       description: t.openTripDesc,
       type: "open",
       image: "/images/package-open-trip.jpg",
+      imageAlt:
+        language === "id"
+          ? "Rombongan Open Trip menyaksikan matahari terbit di Gunung Bromo"
+          : "An Open Trip group watching the sunrise at Mount Bromo",
     },
     {
       category: "PRIVATE TRIP · LONG JEEP",
@@ -104,6 +113,10 @@ export default function Home() {
       description: t.longJeepDesc,
       type: "long-jeep",
       image: "/images/package-long-jeep.jpg",
+      imageAlt:
+        language === "id"
+          ? "Jeep panjang untuk wisata Bromo dengan kapasitas hingga 10 penumpang"
+          : "A long jeep for Bromo tours with room for up to 10 passengers",
     },
   ];
 
@@ -116,6 +129,14 @@ export default function Home() {
   return (
     <>
       <main className="hero" id="home">
+        <Image
+          className="hero-background"
+          src="/images/bromo-hero.webp"
+          alt="Sunrise Gunung Bromo dengan jeep wisata"
+          fill
+          preload
+          sizes="100vw"
+        />
         <div className="hero-overlay" />
 
         <header className="navbar">
@@ -201,12 +222,14 @@ export default function Home() {
             <article className="package-card" key={item.type}>
               <div
                 className={`package-image package-image-${index + 1}`}
-                style={{
-                  backgroundImage: `linear-gradient(0deg, rgba(0,0,0,.35), transparent 55%), url("${item.image}")`,
-                }}
-                role="img"
-                aria-label={`${item.title} ${language === "id" ? "di Gunung Bromo" : "at Mount Bromo"}`}
               >
+                <Image
+                  className="package-photo"
+                  src={item.image}
+                  alt={item.imageAlt}
+                  fill
+                  sizes="(max-width: 650px) 90vw, (max-width: 900px) 45vw, 30vw"
+                />
                 <span>{item.category}</span>
               </div>
 
