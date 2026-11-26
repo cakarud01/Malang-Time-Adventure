@@ -347,6 +347,148 @@ button {
   line-height: 1.8;
 }
 
+.package-price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 3px;
+  margin-top: 18px;
+}
+
+.package-price > span,
+.package-price > small {
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.package-price > strong {
+  color: var(--dark);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.package-details {
+  margin: 0 25px;
+  border-top: 1px solid rgba(16, 33, 59, .12);
+}
+
+.package-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  color: var(--green);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  list-style: none;
+}
+
+.package-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.package-details summary span {
+  font-size: 20px;
+  font-weight: 400;
+  transition: transform .2s ease;
+}
+
+.package-details[open] summary span {
+  transform: rotate(45deg);
+}
+
+.package-details-content {
+  padding: 0 0 25px;
+}
+
+.package-details-content h4 {
+  margin-top: 20px;
+  color: var(--dark);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.package-details-content > p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.trip-info-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.trip-info-list > div,
+.ticket-prices > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.trip-info-list dt,
+.ticket-prices span {
+  color: var(--muted);
+}
+
+.trip-info-list dd {
+  color: var(--dark);
+  font-weight: 700;
+  text-align: right;
+}
+
+.package-detail-list,
+.package-destination-list {
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.package-detail-list li::marker,
+.package-destination-list li::marker {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.package-destination-list li strong,
+.package-destination-list li span {
+  display: block;
+}
+
+.package-destination-list li strong {
+  color: var(--dark);
+}
+
+.ticket-prices {
+  display: grid;
+  gap: 9px;
+  margin-top: 12px;
+  padding: 14px;
+  background: var(--cream);
+  font-size: 11px;
+}
+
+.ticket-prices-title {
+  margin-top: 12px;
+  color: var(--dark);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ticket-prices strong {
+  color: var(--dark);
+  white-space: nowrap;
+}
+
 .package-info a,
 .text-link {
   display: inline-block;
@@ -522,6 +664,10 @@ button {
 
   .package-card:last-child .package-info {
     align-self: center;
+  }
+
+  .package-card:last-child .package-details {
+    grid-column: 1 / -1;
   }
 
   .gallery-grid {

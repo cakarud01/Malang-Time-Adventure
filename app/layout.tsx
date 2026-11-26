@@ -90,29 +90,38 @@ const structuredData = {
         itemListElement: [
           {
             "@type": "Offer",
+            price: "1500000",
+            priceCurrency: "IDR",
+            description: "Harga per Jeep",
             itemOffered: {
               "@type": "Service",
               name: "Private Trip Bromo",
               description:
-                "Perjalanan sunrise Bromo dengan jeep privat khusus untuk satu rombongan.",
+                "Perjalanan sunrise Bromo dengan Jeep privat untuk satu rombongan. Rp1.500.000 per Jeep.",
             },
           },
           {
             "@type": "Offer",
+            price: "350000",
+            priceCurrency: "IDR",
+            description: "Harga per orang",
             itemOffered: {
               "@type": "Service",
               name: "Open Trip Bromo",
               description:
-                "Perjalanan Bromo dengan berbagi jeep bersama tamu lain.",
+                "Perjalanan Bromo dengan berbagi Jeep bersama tamu lain. Rp350.000 per orang.",
             },
           },
           {
             "@type": "Offer",
+            price: "2500000",
+            priceCurrency: "IDR",
+            description: "Harga per Jeep",
             itemOffered: {
               "@type": "Service",
               name: "Private Trip Long Jeep Bromo",
               description:
-                "Perjalanan privat dengan long jeep berkapasitas hingga 10 orang.",
+                "Perjalanan privat dengan long Jeep berkapasitas hingga 10 orang. Rp2.500.000 per Jeep.",
             },
           },
         ],
